@@ -27,9 +27,18 @@ async function displaySavedCharacters() {
         const savedCharactersDiv = document.getElementById('saved-characters');
         savedCharactersDiv.innerHTML = '<h2>Fichas Salvas:</h2>';
         data.forEach(character => {
-            savedCharactersDiv.innerHTML += `<p>${character.name}</p>`;
+            savedCharactersDiv.innerHTML += `
+                <div class="character-card">
+                    <span>${character.name}</span>
+                    <button onclick="accessCharacter('${character.id}')">Acessar Ficha</button>
+                </div>`;
         });
     }
+}
+
+function accessCharacter(characterId) {
+    // Implementar funcionalidade para acessar a ficha do personagem
+    alert(`Acessando ficha do personagem com ID: ${characterId}`);
 }
 
 window.onload = displaySavedCharacters;
