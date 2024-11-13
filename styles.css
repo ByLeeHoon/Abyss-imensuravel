@@ -24,7 +24,7 @@ input {
 
 img.dadoIcon {
   cursor: pointer;
-  width: 24px;
-  height: 24px;
+  width: 16px; /* Ajuste o tamanho conforme necessário */
+  height: 16px; /* Ajuste o tamanho conforme necessário */
   margin-left: 5px;
 }
