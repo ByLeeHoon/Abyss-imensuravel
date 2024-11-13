@@ -26,3 +26,10 @@ async function displaySavedCharacters() {
     } else {
         const savedCharactersDiv = document.getElementById('saved-characters');
         savedCharactersDiv.innerHTML = '<h2>Fichas Salvas:</h2>';
+        data.forEach(character => {
+            savedCharactersDiv.innerHTML += `<p>${character.name}</p>`;
+        });
+    }
+}
+
+window.onload = displaySavedCharacters;
