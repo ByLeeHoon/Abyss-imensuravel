@@ -1,44 +1,15 @@
-// Função para enviar resultado ao Discord
-function enviarParaDiscord(pericia, resultado, bonus, resultadoFinal) {
-  fetch('https://discord.com/api/webhooks/1285426560404291687/Pkb3fAR0LOosvxzVyn4PR6oIX20ptqxLYEvqneWjQe_WWR0-4lo-H916jaRAXEVKD-5l', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      content: `Resultado do dado para ${pericia}: ${resultadoFinal} (1d20: ${resultado} + Bônus: ${bonus})`
-    })
-  }).then(response => {
-    if (response.ok) {
-      alert(`Resultado enviado para o Discord: ${resultadoFinal}`);
-    } else {
-      alert('Falha ao enviar o resultado para o Discord.');
+// Função para criar estrelas
+function createStars() {
+    const starCount = 100;
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.left = `${Math.random() * 100}vw`;
+        star.style.top = `${Math.random() * 100}vh`;
+        star.style.animationDelay = `${Math.random() * 10}s`;
+        document.body.appendChild(star);
     }
-  }).catch(error => {
-    console.error('Erro:', error);
-  });
 }
 
-// Evento de clique no ícone de dado
-document.querySelectorAll('.dadoIcon').forEach(icon => {
-  icon.addEventListener('click', function() {
-    const pericia = this.dataset.pericia;
-    const treinoValue = parseInt(document.querySelector(`.treino[data-pericia="${pericia}"]`).value) || 0;
-    const outrosValue = parseInt(document.querySelector(`.outros[data-pericia="${pericia}"]`).value) || 0;
-    const bonus = treinoValue + outrosValue;
-    const resultado = Math.floor(Math.random() * 20) + 1; // Dado de 20 faces
-    const resultadoFinal = resultado + bonus;
-    enviarParaDiscord(pericia, resultado, bonus, resultadoFinal);
-  });
-});
-
-// Atualizando o bônus ao mudar treino ou outros
-document.querySelectorAll('.treino, .outros').forEach(input => {
-  input.addEventListener('input', function() {
-    const pericia = this.dataset.pericia;
-    const treinoValue = parseInt(document.querySelector(`.treino[data-pericia="${pericia}"]`).value) || 0;
-    const outrosValue = parseInt(document.querySelector(`.outros[data-pericia="${pericia}"]`).value) || 0;
-    const bonus = treinoValue + outrosValue;
-    document.getElementById(`bonus-${pericia}`).textContent = bonus;
-  });
-});
+// Chamar a função para criar estrelas
+createStars();
