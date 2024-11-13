@@ -1,30 +1,36 @@
+// Função para enviar resultado ao Discord
+function enviarParaDiscord(pericia, resultado, bonus, resultadoFinal) {
+  fetch('https://discord.com/api/webhooks/YOUR_WEBHOOK_URL', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      content: `Resultado do dado para ${pericia}: ${resultadoFinal} (1d20: ${resultado} + Bônus: ${bonus})`
+    })
+  }).then(response => {
+    if (response.ok) {
+      alert(`Resultado enviado para o Discord: ${resultadoFinal}`);
+    } else {
+      alert('Falha ao enviar o resultado para o Discord.');
+    }
+  }).catch(error => {
+    console.error('Erro:', error);
+  });
+}
+
+// Evento de clique no ícone de dado
 document.querySelectorAll('.dadoIcon').forEach(icon => {
   icon.addEventListener('click', function() {
     const resultado = Math.floor(Math.random() * 20) + 1; // Dado de 20 faces
     const pericia = this.dataset.pericia;
     const bonus = parseInt(document.getElementById(`bonus-${pericia}`).textContent) || 0;
     const resultadoFinal = resultado + bonus;
-    
-    fetch('https://discord.com/api/webhooks/1285426560404291687/Pkb3fAR0LOosvxzVyn4PR6oIX20ptqxLYEvqneWjQe_WWR0-4lo-H916jaRAXEVKD-5l', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        content: `Resultado do dado para ${pericia}: ${resultadoFinal} (1d20: ${resultado} + Bônus: ${bonus})`
-      })
-    }).then(response => {
-      if (response.ok) {
-        alert(`Resultado enviado para o Discord: ${resultadoFinal}`);
-      } else {
-        alert('Falha ao enviar o resultado para o Discord.');
-      }
-    }).catch(error => {
-      console.error('Erro:', error);
-    });
+    enviarParaDiscord(pericia, resultado, bonus, resultadoFinal);
   });
 });
 
+// Atualizando o bônus ao mudar treino ou outros
 document.querySelectorAll('.treino, .outros').forEach(input => {
   input.addEventListener('input', function() {
     const pericia = this.dataset.pericia;
