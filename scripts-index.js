@@ -1,6 +1,6 @@
 // Função para enviar resultado ao Discord
 function enviarParaDiscord(pericia, resultado, bonus, resultadoFinal) {
-  fetch('https://discord.com/api/webhooks/YOUR_WEBHOOK_URL', {
+  fetch('https://discord.com/api/webhooks/1285426560404291687/Pkb3fAR0LOosvxzVyn4PR6oIX20ptqxLYEvqneWjQe_WWR0-4lo-H916jaRAXEVKD-5l', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
