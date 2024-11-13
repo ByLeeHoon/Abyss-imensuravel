@@ -22,9 +22,11 @@ function enviarParaDiscord(pericia, resultado, bonus, resultadoFinal) {
 // Evento de clique no ícone de dado
 document.querySelectorAll('.dadoIcon').forEach(icon => {
   icon.addEventListener('click', function() {
-    const resultado = Math.floor(Math.random() * 20) + 1; // Dado de 20 faces
     const pericia = this.dataset.pericia;
-    const bonus = parseInt(document.getElementById(`bonus-${pericia}`).textContent) || 0;
+    const treinoValue = parseInt(document.querySelector(`.treino[data-pericia="${pericia}"]`).value) || 0;
+    const outrosValue = parseInt(document.querySelector(`.outros[data-pericia="${pericia}"]`).value) || 0;
+    const bonus = treinoValue + outrosValue;
+    const resultado = Math.floor(Math.random() * 20) + 1; // Dado de 20 faces
     const resultadoFinal = resultado + bonus;
     enviarParaDiscord(pericia, resultado, bonus, resultadoFinal);
   });
