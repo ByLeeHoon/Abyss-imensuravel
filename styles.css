@@ -13,6 +13,25 @@ header {
 main {
     padding: 2rem;
 }
+#saved-characters {
+    margin-top: 2rem;
+}
+.character-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.character-card button {
+    background-color: #6200ea;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
 footer {
     background-color: #333;
     color: #fff;
