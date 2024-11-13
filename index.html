@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Fichas de RPG</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.25.2/dist/umd/supabase.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site de RPG</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Gerador de Fichas de RPG</h1>
-    </header>
-    <main>
-        <div class="toolbar">
-            <button onclick="window.location.href='nova-ficha.html'">Nova Ficha</button>
-            <input type="text" id="search-bar" placeholder="Buscar">
-        </div>
-        <div id="saved-characters">
-            <h2>Fichas Salvas</h2>
-            <!-- Aqui vão as fichas salvas -->
-        </div>
-    </main>
-    <footer>
-        <p>© 2024 Seu Nome</p>
-    </footer>
-    <script src="index-scripts.js"></script>
+  <table>
+    <thead>
+      <tr>
+        <th>PERÍCIAS</th>
+        <th>DADOS</th>
+        <th>BÔNUS</th>
+        <th>Treino</th>
+        <th>Outros</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Adicionar as linhas de habilidades aqui -->
+    </tbody>
+  </table>
+  <button id="rolarDado">Rolar Dado</button>
+  <script src="scripts.js"></script>
 </body>
 </html>
