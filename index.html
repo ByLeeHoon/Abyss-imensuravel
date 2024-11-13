@@ -12,13 +12,40 @@
         <h1>Gerador de Fichas de RPG</h1>
     </header>
     <main>
-        <form id="rpg-form">
-            <label for="character-name">Nome do Personagem:</label>
-            <input type="text" id="character-name" name="character-name" required>
-            <button type="submit">Salvar Ficha</button>
-        </form>
+        <div class="toolbar">
+            <button id="new-character-btn">Nova Ficha</button>
+            <input type="text" id="search-bar" placeholder="Buscar">
+        </div>
+        <div id="character-creation" style="display: none;">
+            <h2>Nova Ficha</h2>
+            <div>
+                <h3>Atributos</h3>
+                <p>Distribua seus pontos de atributos (total inicial: 4).</p>
+                <div class="attribute">
+                    <label>Agilidade (AGI): </label>
+                    <input type="number" id="agi" value="1" min="0" max="3">
+                </div>
+                <div class="attribute">
+                    <label>Força (FOR): </label>
+                    <input type="number" id="for" value="1" min="0" max="3">
+                </div>
+                <div class="attribute">
+                    <label>Intelecto (INT): </label>
+                    <input type="number" id="int" value="1" min="0" max="3">
+                </div>
+                <div class="attribute">
+                    <label>Presença (PRE): </label>
+                    <input type="number" id="pre" value="1" min="0" max="3">
+                </div>
+                <div class="attribute">
+                    <label>Vigor (VIG): </label>
+                    <input type="number" id="vig" value="1" min="0" max="3">
+                </div>
+                <button id="save-character-btn">Salvar Ficha</button>
+            </div>
+        </div>
         <div id="saved-characters">
-            <h2>Fichas Salvas:</h2>
+            <h2>Fichas Salvas</h2>
         </div>
     </main>
     <footer>
