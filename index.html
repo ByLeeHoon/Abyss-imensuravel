@@ -17,9 +17,16 @@
             <input type="text" id="search-bar" placeholder="Buscar">
         </div>
         <div id="character-creation" style="display: none;">
-            <h2>Nova Ficha</h2>
-            <div>
-                <h3>Atributos</h3>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showSection('attributes')">Atributos</a></li>
+                    <li><a href="#" onclick="showSection('origin')">Origem</a></li>
+                    <li><a href="#" onclick="showSection('class')">Classe</a></li>
+                    <li><a href="#" onclick="showSection('final-touches')">Toques Finais</a></li>
+                </ul>
+            </nav>
+            <div id="attributes" class="creation-section">
+                <h2>Atributos</h2>
                 <p>Distribua seus pontos de atributos (total inicial: 4).</p>
                 <div class="attribute">
                     <label>Agilidade (AGI): </label>
@@ -41,6 +48,18 @@
                     <label>Vigor (VIG): </label>
                     <input type="number" id="vig" value="1" min="0" max="3">
                 </div>
+            </div>
+            <div id="origin" class="creation-section" style="display: none;">
+                <h2>Origem</h2>
+                <!-- Adicione campos para origem do personagem -->
+            </div>
+            <div id="class" class="creation-section" style="display: none;">
+                <h2>Classe</h2>
+                <!-- Adicione campos para classe do personagem -->
+            </div>
+            <div id="final-touches" class="creation-section" style="display: none;">
+                <h2>Toques Finais</h2>
+                <!-- Adicione campos para toques finais do personagem -->
                 <button id="save-character-btn">Salvar Ficha</button>
             </div>
         </div>
