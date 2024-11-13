@@ -33,4 +33,13 @@ function showSection(sectionId) {
     console.log(`Mostrando seção: ${sectionId}`);
     const sections = document.querySelectorAll('.creation-section');
     sections.forEach(section => {
-        section.style.display = 'none[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/NatanaelSaymon/code-drops/tree/ada5a46222082116f8d070796ed15e4c0539d38b/TEMPLATE_BOOTSTRAP.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/lgfranco22/blog/tree/2ff765f5547038ea91aa40671858d9fd9d5ffb28/entrar.php?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "2")
+        section.style.display = 'none';
+    });
+    document.getElementById(sectionId).style.display = 'block';
+}
+
+async function displaySavedCharacters() {
+    const { data, error } = await supabase.from('characters').select('*');
+    
+    if (error) {
+[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/NatanaelSaymon/code-drops/tree/ada5a46222082116f8d070796ed15e4c0539d38b/TEMPLATE_BOOTSTRAP.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/lgfranco22/blog/tree/2ff765f5547038ea91aa40671858d9fd9d5ffb28/entrar.php?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "2")
