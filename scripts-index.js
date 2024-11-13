@@ -3,7 +3,7 @@ document.querySelectorAll('.dadoIcon').forEach(icon => {
     const resultado = Math.floor(Math.random() * 20) + 1; // Dado de 20 faces
     const pericia = this.dataset.pericia;
     
-    fetch('https://discord.com/api/webhooks/YOUR_WEBHOOK_URL', {
+    fetch('https://discord.com/api/webhooks/1285426560404291687/Pkb3fAR0LOosvxzVyn4PR6oIX20ptqxLYEvqneWjQe_WWR0-4lo-H916jaRAXEVKD-5l', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
