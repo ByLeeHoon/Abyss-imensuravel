@@ -3,21 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-    <link rel="stylesheet" href="register.css">
+    <title>Registro - RPG</title>
+    <!-- Incluindo o Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Registre-se</h1>
-    </header>
-    <main>
-        <div class="register-container">
-            <input type="text" id="new-username" placeholder="Nome de usuário" required>
-            <input type="password" id="new-password" placeholder="Senha" required>
-            <button id="register-btn">Registrar</button>
-            <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
-        </div>
-    </main>
-    <script src="register.js"></script>
+
+    <h1>Crie sua conta</h1>
+    <p>Cadastre-se para jogar.</p>
+
+    <!-- Formulário de registro -->
+    <form id="register-form">
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" required>
+        
+        <label for="password">Senha:</label>
+        <input type="password" id="password" required>
+        
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <!-- Opção para login com Google -->
+    <button onclick="loginWithGoogle()">Login com Google</button>
+
+    <p>Já tem conta? <a href="login.html">Faça login aqui</a></p>
+
+    <!-- Incluindo o script de configuração e lógica do Firebase -->
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+
 </body>
 </html>
