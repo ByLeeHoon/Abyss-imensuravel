@@ -1,3 +1,12 @@
+// Verifica se o usuário está logado
+document.addEventListener("DOMContentLoaded", () => {
+    const usuarioLogado = localStorage.getItem("usuarioLogado");
+    if (!usuarioLogado) {
+        // Redireciona para a tela de login se o usuário não estiver logado
+        window.location.href = "login.html";
+    }
+});
+
 // Seleciona o botão "Nova Ficha"
 const novaFichaBtn = document.getElementById('nova-ficha-btn');
 
