@@ -15,7 +15,7 @@ googleLoginBtn.addEventListener('click', async () => {
     localStorage.setItem('usuarioLogado', user.uid);
 
     // Redireciona para a página inicial após o login
-    window.location.href = 'html/index.html';
+    window.location.href = 'index.html';
   } catch (error) {
     console.error('Erro ao fazer login com Google:', error);
     errorMessage.style.display = 'block'; // Exibe a mensagem de erro
