@@ -1,8 +1,8 @@
-// Importando o Firebase SDK
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+// firebase-config.js
 
-// Sua configuração do Firebase
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
 const firebaseConfig = {
   apiKey: "AIzaSyB0aiEvb-Eg0Hpa_Cvuj1-jQIbPm2d7zJE",
   authDomain: "abismo-imensuravel.firebaseapp.com",
@@ -16,6 +16,18 @@ const firebaseConfig = {
 // Inicializando o Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
 
-export { auth, googleProvider };
+// Função para login com Google
+document.getElementById('google-login-btn').addEventListener('click', () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            // Armazenar informações do usuário e redirecionar para a página inicial
+            const user = result.user;
+            localStorage.setItem('usuarioLogado', user.uid);
+            window.location.href = 'index.html'; // Redireciona para o index após login
+        })
+        .catch((error) => {
+            console.error('Erro ao realizar login:', error);
+        });
+});
