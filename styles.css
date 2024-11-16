@@ -20,30 +20,14 @@ header {
     width: 100%;
     text-align: center;
     padding: 20px;
-    background-color: #1e1e1e;
+    background: linear-gradient(to right, #6a1b9a, #8e24aa); /* Gradiente aplicado no fundo da barra */
+    position: relative;
+    cursor: pointer; /* Torna a barra clicável */
 }
 
 header h1 {
     position: relative;
-    display: inline-block;
-    cursor: pointer;
-    padding-right: 40px; /* Dá espaço para o gradiente */
-}
-
-header h1::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 20px;  /* Largura da área clicável */
-    height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.2)); /* Gradiente suave */
-    cursor: pointer;
-}
-
-/* Efeito de hover (quando o usuário passa o mouse sobre o gradiente) */
-header h1:hover::after {
-    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.6)); /* Intensifica o efeito */
+    z-index: 2;  /* Garante que o texto fique sobre o gradiente */
 }
 
 /* Container de atributos */
