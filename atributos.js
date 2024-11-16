@@ -1,70 +1,89 @@
-// Seletores dos elementos
-const atributos = document.querySelectorAll('.atributo');
-const headerGradiente = document.querySelector('header');  // Gradiente no cabeçalho
-const numeroAtributos = document.querySelectorAll('.atributo-numerico');  // Para os números editáveis
+// Armazena os atributos do personagem
+let atributos = {
+    agilidade: 1,
+    força: 1,
+    intelecto: 1,
+    presença: 1,
+    vigor: 1,
+};
 
-// Função para garantir que o valor dos atributos esteja entre 0 e 5
-function validarValor(valor) {
-    if (valor < 0) return 0;
-    if (valor > 5) return 5;
-    return valor;
+// Seletores
+const atributosDivs = document.querySelectorAll('.atributo-numerico');
+const header = document.querySelector('header');
+
+// Atualiza visualmente os valores na interface
+function atualizarAtributosNaTela() {
+    const atributosKeys = Object.keys(atributos);
+    atributosDivs.forEach((div, index) => {
+        div.textContent = atributos[atributosKeys[index]];
+    });
 }
 
-// Função para permitir apenas números no input
-function apenasNumeros(event) {
-    const keyCode = event.keyCode || event.which;
-    if (keyCode < 48 || keyCode > 57) {
-        event.preventDefault(); // Impede a digitação de qualquer coisa que não seja número
-    }
-}
-
-// Função para iniciar a edição do número do atributo
-function iniciarEdicaoAtributo(event, index) {
-    const atributo = atributos[index];
-    const numeroElemento = atributo.querySelector('.atributo-numerico');
-
-    // Criando o campo de input para edição
+// Configura um atributo para ser editável
+function tornarEditavel(div, atributoKey) {
+    const valorAtual = atributos[atributoKey];
     const input = document.createElement('input');
-    input.type = 'text';
-    input.value = numeroElemento.textContent; // Valor atual do atributo
-    input.maxLength = 1; // Limitar o número de caracteres para 1
-    input.style.width = '30px';
-    input.style.textAlign = 'center';
-    input.style.backgroundColor = '#e0e0e0'; // Fundo cinza
+    input.type = 'number';
+    input.value = valorAtual;
+    input.min = 0;
+    input.max = 5;
+    input.style.width = '50px';
 
-    // Substituindo o número pelo input
-    numeroElemento.innerHTML = '';
-    numeroElemento.appendChild(input);
+    // Substitui o número pelo campo de entrada
+    div.innerHTML = '';
+    div.appendChild(input);
     input.focus();
 
-    // Adicionando eventos para confirmar a edição
-    input.addEventListener('keydown', function (e) {
+    // Evento para salvar ao sair do campo ou pressionar Enter
+    const salvarAtributo = () => {
+        let novoValor = parseInt(input.value, 10);
+        if (isNaN(novoValor) || novoValor < 0 || novoValor > 5) {
+            novoValor = valorAtual; // Reverte se inválido
+        }
+        atributos[atributoKey] = novoValor; // Atualiza o atributo
+        atualizarAtributosNaTela(); // Atualiza na interface
+    };
+
+    input.addEventListener('blur', salvarAtributo);
+    input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-            let novoValor = parseInt(input.value);
-            numeroElemento.textContent = validarValor(novoValor);
-            input.remove(); // Remove o campo de input após editar
+            salvarAtributo();
+            div.focus(); // Remove o foco do input
         }
     });
-
-    // Adicionando evento de blur (quando o usuário clicar fora)
-    input.addEventListener('blur', function () {
-        let novoValor = parseInt(input.value);
-        numeroElemento.textContent = validarValor(novoValor);
-        input.remove(); // Remove o campo de input após editar
-    });
-
-    // Previne qualquer tecla que não seja número
-    input.addEventListener('keydown', apenasNumeros);
 }
 
-// Adicionando evento de clique no layout de fundo dos atributos
-numeroAtributos.forEach((atributo, index) => {
-    atributo.addEventListener('click', function () {
-        iniciarEdicaoAtributo(event, index);
+// Adiciona evento de clique para editar os atributos
+atributosDivs.forEach((div, index) => {
+    const atributoKey = Object.keys(atributos)[index];
+    div.addEventListener('click', () => {
+        tornarEditavel(div, atributoKey);
     });
 });
 
-// Evento de clique no header para redirecionar para a tela inicial (index)
-headerGradiente.addEventListener('click', function () {
-    window.location.href = 'index.html';  // Redireciona para a página inicial
+// Evento para clicar no gradiente e voltar à tela inicial
+header.addEventListener('click', () => {
+    salvarFicha();
+    window.location.href = 'index.html';
 });
+
+// Salvar ficha no armazenamento local (ou pode ser adaptado para salvar em um servidor)
+function salvarFicha() {
+    const novaFicha = {
+        nome: 'Novo Personagem',
+        classe: 'Classe Indefinida',
+        data: new Date().toLocaleDateString('pt-BR'),
+        atributos: { ...atributos },
+    };
+
+    // Busca fichas existentes no localStorage ou inicia um novo array
+    const fichas = JSON.parse(localStorage.getItem('fichas')) || [];
+    fichas.push(novaFicha);
+
+    // Salva a nova ficha
+    localStorage.setItem('fichas', JSON.stringify(fichas));
+    console.log('Ficha salva:', novaFicha);
+}
+
+// Inicializa os valores dos atributos na tela
+atualizarAtributosNaTela();
