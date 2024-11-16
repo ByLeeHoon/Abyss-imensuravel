@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Conta</title>
-    <link rel="stylesheet" href="js/register.css">
+    <title>Login com Google</title>
+    <link rel="stylesheet" href="js/register.css"> <!-- Estilo específico do registro -->
 </head>
 <body>
     <div class="container">
-        <h1>Crie sua conta</h1>
-        <form id="register-form">
-            <input type="email" id="email" placeholder="Digite seu email" required>
-            <input type="password" id="password" placeholder="Digite sua senha" required>
-            <input type="submit" value="Registrar">
-        </form>
-        <!-- Botão de Entrar com Google -->
-        <button id="google-login-btn" class="btn-roxo">Entrar com Google</button>
-        <div class="error-message" id="error-message"></div>
+        <header>
+            <h1>Bem-vindo ao RPG</h1>
+        </header>
+        <main>
+            <p>Entre com sua conta Google para acessar o sistema de fichas.</p>
+            <button id="google-login-btn" class="login-btn">Entrar com Google</button>
+            <div class="error-message" id="error-message"></div>
+        </main>
     </div>
-    <script src="js/register.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+    <script src="../js/firebase-config.js"></script> <!-- Configuração do Firebase -->
+    <script src="../js/register.js"></script> <!-- Lógica de autenticação -->
 </body>
 </html>
