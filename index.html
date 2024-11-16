@@ -9,6 +9,7 @@
 <body>
     <header>
         <h1>Fichas de RPG</h1>
+        <button id="logout-btn" style="display: none;">Sair</button>
     </header>
     <main>
         <section id="fichas-container">
@@ -16,6 +17,9 @@
         </section>
         <button id="nova-ficha-btn">+ Nova Ficha</button>
     </main>
-    <script src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="firebase-config.js"></script> <!-- Inclua a configuração do Firebase -->
+    <script src="index.js"></script> <!-- O código JavaScript da página -->
 </body>
 </html>
