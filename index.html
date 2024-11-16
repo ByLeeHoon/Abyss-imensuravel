@@ -1,25 +1,48 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fichas de RPG</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>Fichas de RPG</h1>
-        <button id="logout-btn" style="display: none;">Sair</button>
-    </header>
-    <main>
-        <section id="fichas-container">
-            <!-- As fichas aparecerão aqui -->
-        </section>
-        <button id="nova-ficha-btn">+ Nova Ficha</button>
-    </main>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-    <script src="firebase-config.js"></script> <!-- Inclua a configuração do Firebase -->
-    <script src="index.js"></script> <!-- O código JavaScript da página -->
-</body>
-</html>
+// Detecta se o usuário está logado ao carregar a página
+window.onload = () => {
+    const usuarioLogado = localStorage.getItem('usuarioLogado');
+    
+    if (!usuarioLogado) {
+        // Se o usuário não estiver logado, redireciona para o login
+        window.location.href = 'login.html'; // Página de login
+    } else {
+        // O usuário está logado, então pode acessar as fichas
+        carregarFichas();
+    }
+};
+
+// Função para carregar fichas (caso o usuário esteja logado)
+function carregarFichas() {
+    const fichasSalvas = localStorage.getItem('fichas');
+    const fichasContainer = document.getElementById('fichas-container');
+    if (fichasSalvas) {
+        fichas = JSON.parse(fichasSalvas);
+        renderFichas();
+    } else {
+        fichas = []; // Caso não haja fichas, inicializa um array vazio
+    }
+}
+
+// Função para renderizar as fichas na tela
+function renderFichas() {
+    const fichasContainer = document.getElementById('fichas-container');
+    fichasContainer.innerHTML = ''; // Limpa a tela
+    fichas.forEach((ficha, index) => {
+        const fichaCard = document.createElement('div');
+        fichaCard.className = 'ficha-card';
+        fichaCard.innerHTML = `
+            <div>
+                <h2>${ficha.nome || '[Sem nome]'}</h2>
+                <p>${ficha.classe}</p>
+                <p>Registrado em ${ficha.data}</p>
+            </div>
+            <button onclick="acessarFicha(${index})">Acessar Ficha</button>
+        `;
+        fichasContainer.appendChild(fichaCard);
+    });
+}
+
+// Evento para o botão "Nova Ficha"
+document.getElementById('nova-ficha-btn').addEventListener('click', () => {
+    window.location.href = 'atributos.html'; // Redireciona para a página de atributos
+});
