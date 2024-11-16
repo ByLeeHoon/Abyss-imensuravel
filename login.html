@@ -3,25 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - RPG</title>
-    <!-- Incluindo o Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
-
-    <h1>Bem-vindo ao RPG</h1>
-    <p>Faça login para continuar jogando.</p>
-
-    <!-- Formulário de login com Google -->
-    <button onclick="loginWithGoogle()">Login com Google</button>
-
-    <!-- Link para página de registro -->
-    <p>Não tem conta? <a href="register.html">Registre-se aqui</a></p>
-
-    <!-- Incluindo o script de configuração e lógica do Firebase -->
-    <script src="firebase-config.js"></script>
-    <script src="script.js"></script>
-
+    <header>
+        <h1>Login com Google</h1>
+    </header>
+    <main>
+        <button id="login-btn">Login com Google</button>
+        <p id="error-message" style="color: red; display: none;">Erro ao realizar login. Tente novamente.</p>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="firebase-config.js"></script> <!-- Inclua a configuração do Firebase -->
+    <script src="login.js"></script> <!-- Inclua o arquivo de login -->
 </body>
 </html>
