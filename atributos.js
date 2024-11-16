@@ -1,34 +1,32 @@
-// Função para capturar os valores dos atributos e salvar no LocalStorage
-document.getElementById('salvar-atributos').addEventListener('click', () => {
-    // Captura os valores dos campos de entrada
-    const agilidade = parseInt(document.getElementById('agilidade').value);
-    const forca = parseInt(document.getElementById('forca').value);
-    const intelecto = parseInt(document.getElementById('intelecto').value);
-    const presenca = parseInt(document.getElementById('presenca').value);
-    const vigor = parseInt(document.getElementById('vigor').value);
-
-    // Verifica se a soma dos pontos é igual a 4
-    const totalPontos = agilidade + forca + intelecto + presenca + vigor;
-    if (totalPontos !== 4) {
-        alert('Você precisa distribuir exatamente 4 pontos entre os atributos!');
-        return;
-    }
-
-    // Cria o objeto de atributos
-    const atributos = {
-        agilidade,
-        forca,
-        intelecto,
-        presenca,
-        vigor
+// Função para criar a ficha e redirecionar para atributos.html
+function criarFicha() {
+    const novaFicha = {
+        id: Date.now(), // Gerar um ID único baseado no timestamp
+        nome: 'Personagem Novo',
+        atributos: {
+            agilidade: 1,
+            forca: 1,
+            intelecto: 1,
+            presencia: 1,
+            vigor: 1
+        },
+        data: new Date().toLocaleDateString('pt-BR')
     };
 
-    // Salva os atributos no LocalStorage
-    localStorage.setItem('atributos', JSON.stringify(atributos));
+    // Salva a nova ficha no localStorage (pode ser adaptado para GitHub futuramente)
+    const fichasSalvas = JSON.parse(localStorage.getItem('fichas')) || [];
+    fichasSalvas.push(novaFicha);
+    localStorage.setItem('fichas', JSON.stringify(fichasSalvas));
 
-    // Exibe uma mensagem de sucesso
-    alert('Atributos salvos com sucesso!');
+    // Redireciona para a página de atributos, passando o ID da ficha
+    window.location.href = `atributos.html?id=${novaFicha.id}`;
+}
 
-    // Opcional: redireciona para outra página, por exemplo, a página inicial
-    window.location.href = 'index.html'; // Volta para a página principal
+// Adiciona o evento de clique na área com o gradiente (lado direito do título ATRIBUTOS)
+document.querySelector('header h1').addEventListener('click', function (event) {
+    // Verifica se o clique foi na área do gradiente (lado direito)
+    const gradienteArea = event.offsetX > this.offsetWidth - 40; // A largura do gradiente
+    if (gradienteArea) {
+        criarFicha(); // Cria a ficha e redireciona
+    }
 });
