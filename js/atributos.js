@@ -1,3 +1,11 @@
+// Configuração do Firebase (importações e inicialização)
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { auth } from './firebase-config';  // Certifique-se de que está importando corretamente do seu firebase-config.js
+
+// Referências ao Firestore
+const db = getFirestore();
+
 // Armazena os atributos do personagem
 let atributos = {
     agilidade: 1,
@@ -63,26 +71,29 @@ atributosDivs.forEach((div, index) => {
 
 // Evento para clicar no gradiente e voltar à tela inicial
 header.addEventListener('click', () => {
-    salvarFicha();
+    salvarFichaFirebase();
     window.location.href = 'index.html';
 });
 
-// Salvar ficha no armazenamento local (ou pode ser adaptado para salvar em um servidor)
-function salvarFicha() {
-    const novaFicha = {
-        nome: 'Novo Personagem',
-        classe: 'Classe Indefinida',
-        data: new Date().toLocaleDateString('pt-BR'),
-        atributos: { ...atributos },
-    };
+// Salvar ficha no Firebase Firestore
+async function salvarFichaFirebase() {
+    try {
+        // Dados da ficha
+        const novaFicha = {
+            nome: 'Novo Personagem',
+            classe: 'Classe Indefinida',
+            data: new Date().toLocaleDateString('pt-BR'),
+            atributos: { ...atributos },
+            userId: auth.currentUser ? auth.currentUser.uid : null, // Salvar o ID do usuário logado
+        };
 
-    // Busca fichas existentes no localStorage ou inicia um novo array
-    const fichas = JSON.parse(localStorage.getItem('fichas')) || [];
-    fichas.push(novaFicha);
+        // Adicionar ficha na coleção "fichas"
+        const docRef = await addDoc(collection(db, "fichas"), novaFicha);
 
-    // Salva a nova ficha
-    localStorage.setItem('fichas', JSON.stringify(fichas));
-    console.log('Ficha salva:', novaFicha);
+        console.log('Ficha salva com ID: ', docRef.id);
+    } catch (error) {
+        console.error('Erro ao salvar ficha:', error);
+    }
 }
 
 // Inicializa os valores dos atributos na tela
