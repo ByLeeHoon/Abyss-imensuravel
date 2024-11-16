@@ -4,7 +4,7 @@ window.onload = () => {
     
     if (!usuarioLogado) {
         // Se o usuário não estiver logado, redireciona para o login
-        window.location.href = 'login.html'; // Página de login
+        window.location.href = 'register.html'; // Página de login
     } else {
         // O usuário está logado, então pode acessar as fichas
         carregarFichas();
