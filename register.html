@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Conta</title>
-    <link rel="stylesheet" href="register.css"> <!-- Link para o CSS de registro -->
+    <title>Registro com Google</title>
+    <link rel="stylesheet" href="styles.css"> <!-- CSS principal -->
 </head>
 <body>
-    <div class="container">
-        <h1>Crie sua conta</h1>
-        <form id="register-form">
-            <input type="email" id="email" placeholder="Digite seu email" required>
-            <input type="password" id="password" placeholder="Digite sua senha" required>
-            <input type="submit" value="Registrar">
-        </form>
-        <div class="error-message" id="error-message"></div>
-    </div>
-    <script src="register.js"></script> <!-- Script para controle do registro -->
+    <header>
+        <h1>Fichas de RPG</h1>
+    </header>
+    <main>
+        <section class="registro-container">
+            <h2>Bem-vindo!</h2>
+            <p>Entre com o Google para acessar ou criar sua conta.</p>
+            <button id="google-login-btn" class="button">Entrar com Google</button>
+            <div id="error-message" class="error-message"></div>
+        </section>
+    </main>
+    <script src="firebase-config.js"></script> <!-- Configuração do Firebase -->
 </body>
 </html>
