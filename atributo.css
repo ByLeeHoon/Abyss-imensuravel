@@ -7,7 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #121212, #3b2d57); /* Fundo escuro com toque de roxo */
+    background-color: #121212; /* Fundo sólido para o corpo */
     color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -20,7 +20,7 @@ header {
     width: 100%;
     text-align: center;
     padding: 20px;
-    background: linear-gradient(to right, #2e2e2e, #6a1b9a); /* Gradiente para o cabeçalho */
+    background: linear-gradient(to right, #2e2e2e, #6a1b9a); /* Gradiente no cabeçalho */
 }
 
 header h1 {
@@ -90,4 +90,4 @@ main p {
     color: #aaaaaa;
     font-size: 14px;
     text-align: center;
-    }
+}
