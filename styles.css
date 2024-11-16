@@ -46,19 +46,10 @@ header h1 {
     justify-content: space-between;
     align-items: center;
     border: 1px solid #333;
-    transition: transform 0.2s ease;
-}
-
-.ficha-card:hover {
-    transform: scale(1.05);
-}
-
-.ficha-card h2,
-.ficha-card p {
-    margin: 0;
 }
 
 .ficha-card h2 {
+    margin: 0;
     font-size: 18px;
     color: #ffffff;
 }
@@ -68,21 +59,18 @@ header h1 {
     font-size: 14px;
 }
 
-/* Estilo de elementos editáveis */
-.ficha-nome,
-.ficha-classe {
-    font-size: 18px;
-    color: #ffffff;
-    background-color: transparent;
+.ficha-card button {
+    background-color: #6a1b9a;
+    color: white;
     border: none;
-    outline: none;
-    margin-bottom: 5px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
-.ficha-nome:focus,
-.ficha-classe:focus {
-    border-bottom: 2px solid #6a1b9a;
-    background-color: #333;
+.ficha-card button:hover {
+    background-color: #8e24aa;
 }
 
 /* Botão Nova Ficha */
@@ -101,34 +89,56 @@ header h1 {
     background-color: #8e24aa;
 }
 
-/* Botão Acessar Ficha */
-.ficha-card button {
-    background-color: #4caf50;
+/* Centralizar o parágrafo de texto */
+main p {
+    text-align: center; /* Alinha o texto horizontalmente ao centro */
+    max-width: 600px;   /* Define uma largura máxima para o parágrafo */
+    margin: 0 auto;     /* Centraliza o parágrafo horizontalmente */
+    padding: 20px;      /* Dá um pouco de espaço ao redor do texto */
+}
+
+/* Estilo para os inputs de atributos */
+.atributos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas */
+    gap: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.atributo label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.atributo input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 5px;
+}
+
+.atributo input:focus {
+    border-color: #6a1b9a;
+    outline: none;
+}
+
+/* Estilo do botão de salvar atributos */
+#salvar-atributos {
+    background-color: #6a1b9a;
     color: white;
     border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
+    padding: 10px 20px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
+    margin-top: 20px;
 }
 
-.ficha-card button:hover {
-    background-color: #388e3c;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-
-    #fichas-container {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .ficha-card {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+#salvar-atributos:hover {
+    background-color: #8e24aa;
 }
