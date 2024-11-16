@@ -1,57 +1,65 @@
-// Verifica se o usuário está logado
-window.onload = () => {
-    const usuarioLogado = localStorage.getItem('usuarioLogado');
-    
-    if (!usuarioLogado) {
-        alert('Você precisa estar logado para acessar esta página.');
-        window.location.href = 'login.html'; // Redireciona para a página de login
-    } else {
-        // O usuário está logado, então podemos carregar as fichas
-        carregarFichas();
-    }
+import { getFirestore, collection, addDoc, getDocs, query, where } from "firebase/firestore"; 
+import { initializeApp } from "firebase/app";
+
+// Configuração do Firebase (substitua com os valores reais)
+const firebaseConfig = {
+  apiKey: "AIzaSyB0aiEvb-Eg0Hpa_Cvuj1-jQIbPm2d7zJE",
+  authDomain: "abismo-imensuravel.firebaseapp.com",
+  projectId: "abismo-imensuravel",
+  storageBucket: "abismo-imensuravel.appspot.com",
+  messagingSenderId: "915439292491",
+  appId: "1:915439292491:web:76d4a24bf7e6964aeefdce",
+  measurementId: "G-9ZMNV6Y8K8"
 };
 
-// Verifica se o usuário está logado
-document.addEventListener("DOMContentLoaded", () => {
+// Inicializando o Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Função para adicionar uma nova ficha no Firestore
+async function adicionarFicha(ficha) {
     const usuarioLogado = localStorage.getItem("usuarioLogado");
     if (!usuarioLogado) {
-        // Redireciona para a tela de login se o usuário não estiver logado
-        window.location.href = "login.html";
+        alert("Você precisa estar logado para adicionar uma ficha.");
+        return;
     }
-});
 
-// Seleciona o botão "Nova Ficha"
-const novaFichaBtn = document.getElementById('nova-ficha-btn');
+    const user = JSON.parse(usuarioLogado);
+    
+    try {
+        const docRef = await addDoc(collection(db, "fichas"), {
+            ...ficha,
+            userId: user.uid  // Adiciona o ID do usuário à ficha
+        });
+        console.log("Ficha adicionada com ID: ", docRef.id);
+        carregarFichas(); // Atualiza a lista de fichas
+    } catch (e) {
+        console.error("Erro ao adicionar ficha: ", e);
+    }
+}
 
-// Adiciona o evento de clique para redirecionar para a página de atributos
-novaFichaBtn.addEventListener('click', () => {
-    window.location.href = 'atributos.html'; // Redireciona para atributos.html
-});
-// Carregar fichas do localStorage
+// Função para carregar as fichas do Firestore
 async function carregarFichas() {
-    const fichasSalvas = localStorage.getItem('fichas');
-    if (fichasSalvas) {
-        fichas = JSON.parse(fichasSalvas);
-    } else {
-        fichas = []; // Inicializa um array vazio se não houver fichas
+    const usuarioLogado = localStorage.getItem("usuarioLogado");
+    if (!usuarioLogado) {
+        alert("Você precisa estar logado para visualizar suas fichas.");
+        return;
     }
-    renderFichas();
+
+    const user = JSON.parse(usuarioLogado);
+    const q = query(collection(db, "fichas"), where("userId", "==", user.uid)); // Filtra as fichas do usuário
+
+    const querySnapshot = await getDocs(q);
+    const fichas = [];
+    querySnapshot.forEach((doc) => {
+        fichas.push(doc.data());
+    });
+    renderFichas(fichas);
 }
 
-// Salvar fichas no localStorage
-function salvarFichasLocal() {
-    localStorage.setItem('fichas', JSON.stringify(fichas));
-}
-
-// Adicione uma nova ficha
-function adicionarFicha(ficha) {
-    fichas.push(ficha);
-    salvarFichasLocal();
-    renderFichas();
-}
-
-// Renderizar fichas na tela inicial
-function renderFichas() {
+// Função para renderizar as fichas na tela
+function renderFichas(fichas) {
+    const fichasContainer = document.getElementById('fichas-container');
     fichasContainer.innerHTML = ''; // Limpa a tela
     fichas.forEach((ficha, index) => {
         const fichaCard = document.createElement('div');
@@ -67,3 +75,40 @@ function renderFichas() {
         fichasContainer.appendChild(fichaCard);
     });
 }
+
+// Função de clique para adicionar uma ficha nova com os atributos reais
+document.getElementById('nova-ficha-btn').addEventListener('click', () => {
+    const novaFicha = {
+        nome: 'Novo Personagem',
+        classe: 'Classe Indefinida',
+        data: new Date().toLocaleDateString('pt-BR'),
+        atributos: { 
+            agilidade: 10,
+            força: 10,
+            intelecto: 10,
+            presença: 10,
+            vigor: 10
+        }
+    };
+    adicionarFicha(novaFicha);
+});
+
+// Função para salvar a ficha ao clicar no cabeçalho (gradiente)
+document.querySelector('header').addEventListener('click', () => {
+    const fichaAtual = {
+        nome: 'Personagem Atual',
+        classe: 'Classe Atual',
+        data: new Date().toLocaleDateString('pt-BR'),
+        atributos: {
+            agilidade: 10,
+            força: 10,
+            intelecto: 10,
+            presença: 10,
+            vigor: 10
+        }
+    };
+    adicionarFicha(fichaAtual);  // Salva a ficha atual quando o cabeçalho for clicado
+});
+
+// Chama a função para carregar as fichas assim que a página for carregada
+window.onload = carregarFichas;
