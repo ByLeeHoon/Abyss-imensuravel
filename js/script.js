@@ -44,5 +44,5 @@ function renderFichas() {
 
 // Evento para o botão "Nova Ficha"
 document.getElementById('nova-ficha-btn').addEventListener('click', () => {
-    window.location.href = 'atributos.html'; // Redireciona para a página de atributos
+    window.location.href = 'html/atributos.html'; // Redireciona para a página de atributos
 });
