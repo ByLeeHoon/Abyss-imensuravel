@@ -1,20 +1,23 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Configuração do Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyB0aiEvb-Eg0Hpa_Cvuj1-jQIbPm2d7zJE",
-  authDomain: "abismo-imensuravel.firebaseapp.com",
-  projectId: "abismo-imensuravel",
-  storageBucket: "abismo-imensuravel.firebasestorage.app",
-  messagingSenderId: "915439292491",
-  appId: "1:915439292491:web:76d4a24bf7e6964aeefdce",
-  measurementId: "G-9ZMNV6Y8K8"
-};
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyB0aiEvb-Eg0Hpa_Cvuj1-jQIbPm2d7zJE",
+    authDomain: "abismo-imensuravel.firebaseapp.com",
+    projectId: "abismo-imensuravel",
+    storageBucket: "abismo-imensuravel.firebasestorage.app",
+    messagingSenderId: "915439292491",
+    appId: "1:915439292491:web:39fbc5c2e8d3e3efeefdce",
+    measurementId: "G-0CND4LYC1Z"
+  };
 
-// Inicializando o Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider(); // Provider para login do Google
-
-export { auth, googleProvider };
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
