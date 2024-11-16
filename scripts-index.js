@@ -5,6 +5,23 @@ let fichas = [];
 const fichasContainer = document.getElementById('fichas-container');
 const novaFichaBtn = document.getElementById('nova-ficha-btn');
 
+// Função para carregar dados do arquivo JSON
+async function carregarFichas() {
+    try {
+        const resposta = await fetch('data.json'); // Carrega o arquivo
+        const dados = await resposta.json();
+        fichas = dados; // Atualiza o array fichas
+        renderFichas(); // Renderiza na tela
+    } catch (erro) {
+        console.error('Erro ao carregar as fichas:', erro);
+    }
+}
+
+// Função para salvar no LocalStorage (pode ser adaptada para GitHub futuramente)
+function salvarFichasLocal() {
+    localStorage.setItem('fichas', JSON.stringify(fichas));
+}
+
 // Função para renderizar as fichas
 function renderFichas() {
     fichasContainer.innerHTML = ''; // Limpar o container
@@ -29,8 +46,16 @@ novaFichaBtn.addEventListener('click', () => {
         nome: '[Sem nome]',
         classe: 'Classe indefinida',
         data: new Date().toLocaleDateString('pt-BR'),
+        atributos: {
+            força: 10,
+            destreza: 10,
+            inteligência: 10,
+            vida: 20,
+            mana: 10
+        }
     };
     fichas.push(novaFicha);
+    salvarFichasLocal();
     renderFichas();
 });
 
@@ -40,5 +65,5 @@ function acessarFicha(index) {
     // Aqui você pode abrir uma nova página ou modal com mais informações.
 }
 
-// Inicializar
-renderFichas();
+// Inicializar com os dados do JSON
+carregarFichas();
