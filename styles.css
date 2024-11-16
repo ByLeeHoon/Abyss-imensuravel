@@ -46,10 +46,19 @@ header h1 {
     justify-content: space-between;
     align-items: center;
     border: 1px solid #333;
+    transition: transform 0.2s ease;
+}
+
+.ficha-card:hover {
+    transform: scale(1.05);
+}
+
+.ficha-card h2,
+.ficha-card p {
+    margin: 0;
 }
 
 .ficha-card h2 {
-    margin: 0;
     font-size: 18px;
     color: #ffffff;
 }
@@ -59,18 +68,21 @@ header h1 {
     font-size: 14px;
 }
 
-.ficha-card button {
-    background-color: #6a1b9a;
-    color: white;
+/* Estilo de elementos editáveis */
+.ficha-nome,
+.ficha-classe {
+    font-size: 18px;
+    color: #ffffff;
+    background-color: transparent;
     border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
+    outline: none;
+    margin-bottom: 5px;
 }
 
-.ficha-card button:hover {
-    background-color: #8e24aa;
+.ficha-nome:focus,
+.ficha-classe:focus {
+    border-bottom: 2px solid #6a1b9a;
+    background-color: #333;
 }
 
 /* Botão Nova Ficha */
@@ -87,4 +99,36 @@ header h1 {
 
 #nova-ficha-btn:hover {
     background-color: #8e24aa;
+}
+
+/* Botão Acessar Ficha */
+.ficha-card button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.ficha-card button:hover {
+    background-color: #388e3c;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    #fichas-container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .ficha-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
