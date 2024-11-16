@@ -35,79 +35,26 @@ header nav {
     gap: 20px;
 }
 
-/* Barra de Gradiente do Cabeçalho */
-#atributos-header {
-    cursor: pointer;
-    padding: 10px;
-    transition: background 0.3s;
-}
-
-#atributos-header:hover {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-/* Corpo da página */
-main {
-    padding: 20px;
-    width: 100%;
-    max-width: 800px;
-    text-align: center;
-}
-
-p {
-    margin-bottom: 20px;
-    font-size: 16px;
-    color: #aaaaaa;
-}
-
-/* Seção de Atributos */
-.atributos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.atributo {
-    background-color: #1e1e1e;
-    padding: 20px;
+/* Botão Nova Ficha */
+#nova-ficha-btn {
+    background-color: #6a1b9a;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 20px;
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #333;
-}
-
-.atributo h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #ffffff;
-}
-
-.atributo p {
-    font-size: 14px;
-    color: #aaaaaa;
-}
-
-/* Estilo para links (nav) */
-header nav a {
-    text-decoration: none;
-    color: #ffffff;
+    cursor: pointer;
     font-size: 16px;
-    padding: 5px 10px;
-    border-radius: 5px;
+    transition: background-color 0.3s;
+    position: absolute;
+    bottom: 20px;
 }
 
-header nav a:hover {
+#nova-ficha-btn:hover {
     background-color: #8e24aa;
 }
 
-header nav a.active {
-    background-color: #6a1b9a;
-    color: white;
-}
-
-/* Estilo do botão de navegação (apenas para Atributos) */
+/* Gradiente no Cabeçalho */
 #atributos-header {
     cursor: pointer;
     background-color: #6a1b9a;
