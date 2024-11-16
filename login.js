@@ -1,27 +1,26 @@
-// Seletores
+// Importando as funções necessárias do Firebase
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { auth, googleProvider } from './firebase-config'; // Certifique-se de que está importando corretamente do seu arquivo de configuração
+
+// Referências aos elementos do HTML
 const loginBtn = document.getElementById('login-btn');
-const usernameInput = document.getElementById('username');
-const passwordInput = document.getElementById('password');
+const errorMessage = document.getElementById('error-message');
 
-// Evento de login
-loginBtn.addEventListener('click', () => {
-    const username = usernameInput.value.trim();
-    const password = passwordInput.value.trim();
+// Evento para o botão de login
+loginBtn.addEventListener('click', async () => {
+    try {
+        // Fazendo login com Google
+        const result = await signInWithPopup(auth, googleProvider);
+        const user = result.user;
+        console.log('Usuário logado:', user);
 
-    if (!username || !password) {
-        alert('Por favor, preencha todos os campos.');
-        return;
-    }
+        // Salvando o usuário no localStorage para controlar o login
+        localStorage.setItem('usuarioLogado', JSON.stringify(user));
 
-    // Verifica se o usuário existe no localStorage
-    const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-    const usuario = usuarios.find(user => user.username === username && user.password === password);
-
-    if (usuario) {
-        // Armazena o usuário logado no localStorage
-        localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
-        window.location.href = 'index.html'; // Redireciona para a página principal
-    } else {
-        alert('Nome de usuário ou senha inválidos.');
+        // Redirecionando para a página inicial após o login
+        window.location.href = 'index.html';
+    } catch (error) {
+        console.error('Erro ao fazer login:', error);
+        errorMessage.style.display = 'block'; // Exibe a mensagem de erro
     }
 });
