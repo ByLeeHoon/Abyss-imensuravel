@@ -1,4 +1,17 @@
 // Verifica se o usuário está logado
+window.onload = () => {
+    const usuarioLogado = localStorage.getItem('usuarioLogado');
+    
+    if (!usuarioLogado) {
+        alert('Você precisa estar logado para acessar esta página.');
+        window.location.href = 'login.html'; // Redireciona para a página de login
+    } else {
+        // O usuário está logado, então podemos carregar as fichas
+        carregarFichas();
+    }
+};
+
+// Verifica se o usuário está logado
 document.addEventListener("DOMContentLoaded", () => {
     const usuarioLogado = localStorage.getItem("usuarioLogado");
     if (!usuarioLogado) {
