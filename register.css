@@ -1,72 +1,53 @@
-/* Geral (reutilizado do index.html) */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+/* Estilo para a página de registro */
+body.registro-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9; /* Fundo claro */
     margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    font-family: Arial, sans-serif;
 }
 
-header {
-    background-color: #333;
-    color: white;
-    width: 100%;
-    padding: 20px;
-    text-align: center;
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    text-align: center;
-}
-
-/* Estilo específico do registro */
 .registro-container {
-    background-color: #fff;
-    padding: 30px 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 90%;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    text-align: center;
+    width: 350px;
 }
 
 .registro-container h2 {
-    margin-top: 0;
     color: #333;
+    margin-bottom: 1rem;
 }
 
 .registro-container p {
-    margin-bottom: 20px;
-    color: #666;
+    color: #555;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
 }
 
-/* Botão do Google */
 .button {
-    background-color: #4285f4;
+    display: inline-block;
+    background-color: #6a1b9a; /* Roxo */
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
 .button:hover {
-    background-color: #357ae8;
+    background-color: #4a0072; /* Roxo mais escuro */
 }
 
-/* Mensagem de erro */
 .error-message {
-    margin-top: 15px;
+    display: none;
     color: red;
-    display: none; /* Oculto por padrão */
+    font-size: 0.8rem;
+    margin-top: 1rem;
 }
