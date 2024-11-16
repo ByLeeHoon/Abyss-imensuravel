@@ -92,7 +92,7 @@ header h1 {
 /* Centralizar o parágrafo de texto */
 main p {
     text-align: center; /* Alinha o texto horizontalmente ao centro */
-    max-width: 600px;   /* Define uma largura máxima para o parágrafo */
+    max-width: 900px;   /* Define uma largura máxima para o parágrafo */
     margin: 0 auto;     /* Centraliza o parágrafo horizontalmente */
     padding: 20px;      /* Dá um pouco de espaço ao redor do texto */
 }
