@@ -1,23 +1,45 @@
-import { auth, googleProvider } from './firebase-config';
+import { auth, GoogleAuthProvider, db } from './firebase-config';
+import { signInWithPopup } from 'firebase/auth';
+import { collection, addDoc } from 'firebase/firestore';
 
+// Referências do DOM
 const googleLoginBtn = document.getElementById('google-login-btn');
 const errorMessage = document.getElementById('error-message');
 
-// Evento para o botão de login com Google
-googleLoginBtn.addEventListener('click', async () => {
-  try {
-    // Fazendo o login com o Google
-    const result = await signInWithPopup(auth, googleProvider);
-    const user = result.user;
-    console.log('Usuário logado:', user);
+// Função para autenticar o usuário com o Google
+googleLoginBtn.addEventListener('click', () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+        .then(async (result) => {
+            const user = result.user;
+            console.log('Usuário logado:', user);
 
-    // Armazenando o ID do usuário no localStorage (ou firebase, dependendo da sua necessidade)
-    localStorage.setItem('usuarioLogado', user.uid);
+            // Salvar dados do usuário no Firestore
+            await salvarDadosNoFirestore(user);
 
-    // Redireciona para a página inicial após o login
-    window.location.href = 'index.html';
-  } catch (error) {
-    console.error('Erro ao fazer login com Google:', error);
-    errorMessage.style.display = 'block'; // Exibe a mensagem de erro
-  }
+            // Redirecionar para a página inicial após login
+            window.location.href = '/index.html';
+        })
+        .catch((error) => {
+            console.error('Erro no login:', error);
+            errorMessage.textContent = 'Erro ao tentar fazer login. Tente novamente.';
+        });
 });
+
+// Função para salvar os dados do usuário no Firestore
+async function salvarDadosNoFirestore(user) {
+    try {
+        const ficha = {
+            nome: user.displayName || 'Usuário Desconhecido',
+            email: user.email,
+            uid: user.uid,
+            dataCriacao: new Date().toLocaleDateString('pt-BR'),
+        };
+
+        // Salva os dados do usuário na coleção "usuarios"
+        await addDoc(collection(db, 'usuarios'), ficha);
+        console.log('Dados do usuário salvos com sucesso!');
+    } catch (error) {
+        console.error('Erro ao salvar dados no Firestore:', error);
+    }
+}
