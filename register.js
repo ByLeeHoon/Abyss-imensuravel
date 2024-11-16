@@ -1,23 +1,24 @@
 // Importando as funções necessárias do Firebase
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth, googleProvider } from './firebase-config'; // Certifique-se de que está importando corretamente do seu arquivo de configuração
+import { auth, googleProvider } from './firebase-config'; // Certifique-se de que está importando corretamente
 
-// Referências aos elementos do HTML
-const registerBtn = document.getElementById('register-btn');
-const errorMessage = document.getElementById('error-message');
+// Referência ao botão de login com Google
+const googleLoginBtn = document.getElementById('google-login-btn');
 
-// Evento para o botão de registro
-registerBtn.addEventListener('click', async () => {
+// Evento de clique no botão de login com Google
+googleLoginBtn.addEventListener('click', async () => {
     try {
-        // Fazendo login com Google (se não tiver conta, o Firebase cria automaticamente)
+        // Tenta fazer login com o Google
         const result = await signInWithPopup(auth, googleProvider);
         const user = result.user;
-        console.log('Usuário registrado/logado:', user);
+        console.log('Usuário logado:', user);
 
-        // Redirecionando para a página inicial após o login ou registro
+        // Salvar dados do usuário, se necessário (opcional)
+        localStorage.setItem('usuarioLogado', user.uid);
+
+        // Redirecionar para a página principal após o login
         window.location.href = 'index.html';
     } catch (error) {
-        console.error('Erro ao registrar o usuário:', error);
-        errorMessage.style.display = 'block'; // Exibe a mensagem de erro
+        console.error('Erro ao fazer login com Google:', error);
+        alert('Erro ao tentar fazer login com Google.');
     }
 });
