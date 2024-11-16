@@ -18,53 +18,69 @@ body {
 /* Cabeçalho */
 header {
     width: 100%;
-    text-align: center;
     padding: 20px;
-    background: linear-gradient(to right, #6a1b9a, #8e24aa); /* Gradiente aplicado no fundo da barra */
-    position: relative;
-    cursor: pointer; /* Torna a barra clicável */
+    background: linear-gradient(to right, #6a1b9a, #8e24aa); /* Gradiente de cor */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header h1 {
-    position: relative;
-    z-index: 2;  /* Garante que o texto fique sobre o gradiente */
+    font-size: 24px;
+    margin: 0;
 }
 
-/* Container de atributos */
+header nav {
+    display: flex;
+    gap: 20px;
+}
+
+/* Barra de Gradiente do Cabeçalho */
+#atributos-header {
+    cursor: pointer;
+    padding: 10px;
+    transition: background 0.3s;
+}
+
+#atributos-header:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* Corpo da página */
 main {
     padding: 20px;
+    width: 100%;
+    max-width: 800px;
     text-align: center;
 }
 
-/* Estilo do texto que explica sobre os atributos */
-main p {
-    max-width: 800px;
-    margin: 20px auto;
-    line-height: 1.6;
+p {
+    margin-bottom: 20px;
     font-size: 16px;
+    color: #aaaaaa;
 }
 
-/* Estilo para os cartões de atributos */
+/* Seção de Atributos */
 .atributos {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .atributo {
     background-color: #1e1e1e;
-    border-radius: 8px;
     padding: 20px;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 120px;
     border: 1px solid #333;
 }
 
 .atributo h2 {
     font-size: 24px;
+    margin-bottom: 10px;
     color: #ffffff;
 }
 
@@ -73,18 +89,35 @@ main p {
     color: #aaaaaa;
 }
 
-/* Adicionando um efeito de hover para os atributos */
-.atributo:hover {
-    background-color: #333333;
+/* Estilo para links (nav) */
+header nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
-/* Estilos para o rodapé (se necessário) */
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-    background-color: #1e1e1e;
-    color: #ffffff;
+header nav a:hover {
+    background-color: #8e24aa;
+}
+
+header nav a.active {
+    background-color: #6a1b9a;
+    color: white;
+}
+
+/* Estilo do botão de navegação (apenas para Atributos) */
+#atributos-header {
+    cursor: pointer;
+    background-color: #6a1b9a;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#atributos-header:hover {
+    background-color: #8e24aa;
 }
