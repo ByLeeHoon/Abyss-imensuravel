@@ -1,80 +1,85 @@
-/* Estilo geral */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #121212;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-}
-
-/* Cabeçalho */
+/* Estilo para o cabeçalho com gradiente */
 header {
-    width: 100%;
+    background: linear-gradient(to right, #757575, #9c27b0); /* Gradiente suave de cinza para roxo */
+    cursor: pointer; /* Indica que é clicável */
+    text-align: center;
     padding: 20px;
-    background: linear-gradient(to right, #6a1b9a, #8e24aa); /* Gradiente de cor */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 header h1 {
     font-size: 24px;
+    color: white;
     margin: 0;
 }
 
-header nav {
+nav {
     display: flex;
+    justify-content: center;
     gap: 20px;
 }
 
-/* Seção de Atributos */
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Alterando cor do gradiente quando passar o mouse (efeito hover) */
+header:hover {
+    background: linear-gradient(to right, #9c27b0, #757575); /* Reverte a direção no hover */
+}
+
+/* Corpo principal */
+main {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+}
+
+p {
+    color: #ffffff;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Estilo dos atributos */
 .atributos {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-top: 20px;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .atributo {
     background-color: #1e1e1e;
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #333;
+    text-align: center;
 }
 
 .atributo h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    margin: 0;
+    font-size: 18px;
     color: #ffffff;
 }
 
 .atributo p {
-    font-size: 14px;
     color: #aaaaaa;
+    font-size: 14px;
 }
 
-/* Gradiente de Cabeçalho */
-#atributos-header {
-    cursor: pointer;
-    background-color: #6a1b9a;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-#atributos-header:hover {
-    background-color: #8e24aa;
+/* Adicionando estilo para a edição dos números */
+.atributo-numerico {
+    font-size: 36px;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    background: #333333;
+    border-radius: 5px;
+    padding: 10px;
+    width: 60px;
+    margin: 10px auto;
+    cursor: text;
 }
